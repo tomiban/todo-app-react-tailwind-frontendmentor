@@ -79,13 +79,13 @@ const App = () => {
     //defino la funcion que actualiza el filtro al hacer click
     const changeFilter = (newFilter) => {
         setFilter(newFilter);
-    }
+    };
 
     //Guardo el arreglo segun el objeto accedido por el filtro elegido
     const filteredTodos = filterFunctions[filter](todos);
 
     return (
-        <div className='min-h-screen bg-gray-200 bg-[url("./assets/images/bg-mobile-light.jpg")] bg-contain bg-no-repeat'>
+        <div className='min-h-screen bg-gray-200 bg-[url("./assets/images/bg-mobile-light.jpg")] bg-contain bg-no-repeat dark:bg-gray-900 dark:bg-[url("./assets/images/bg-mobile-dark.jpg")] dark:transition-all dark:duration-500'>
             <Header />
 
             <main className="container mx-auto mt-8 px-4">
@@ -102,7 +102,6 @@ const App = () => {
                 />
                 <TodoFilter changeFilter={changeFilter} filter={filter} />
             </main>
-
             <Footer />
         </div>
     );
