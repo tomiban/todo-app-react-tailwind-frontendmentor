@@ -6,7 +6,7 @@ import TodoCreate from "./components/TodoCreate";
 import TodoFilter from "./components/TodoFilter";
 import TodoList from "./components/TodoList";
 
-const initialStateTodos = [
+/* const initialStateTodos = [
     {
         id: 1,
         title: "Go to the gym",
@@ -27,8 +27,9 @@ const initialStateTodos = [
         title: "Read for 1 hour",
         completed: false,
     },
-];
+]; */
 
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
 
