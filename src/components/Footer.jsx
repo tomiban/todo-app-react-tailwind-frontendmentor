@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="capilize mt-12 text-center text-gray-600 dark:bg-gray-900 dark:transition-all dark:duration-500">
+        <footer className="capilize mt-10 text-center text-gray-600 dark:bg-gray-900">
             Drag and drop to reorder list
         </footer>
     );

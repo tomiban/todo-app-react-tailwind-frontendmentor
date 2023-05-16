@@ -85,7 +85,7 @@ const App = () => {
     const filteredTodos = filterFunctions[filter](todos);
 
     return (
-        <div className='min-h-screen bg-gray-200 bg-[url("./assets/images/bg-mobile-light.jpg")] bg-contain bg-no-repeat dark:bg-gray-900 dark:bg-[url("./assets/images/bg-mobile-dark.jpg")] dark:transition-all dark:duration-500'>
+        <div className='min-h-screen bg-gray-200 bg-[url("./assets/images/bg-mobile-light.jpg")] bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-[url("./assets/images/bg-mobile-dark.jpg")]'>
             <Header />
 
             <main className="container mx-auto mt-8 px-4">
