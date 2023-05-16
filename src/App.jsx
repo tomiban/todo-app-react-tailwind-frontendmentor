@@ -68,7 +68,7 @@ const App = () => {
         <div className='min-h-screen bg-gray-200 bg-[url("./assets/images/bg-mobile-light.jpg")] bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-[url("./assets/images/bg-mobile-dark.jpg")]'>
             <Header />
 
-            <main className="container mx-auto mt-8 px-4">
+            <main className="container mx-auto mt-20 px-4">
                 <TodoCreate createTodo={createTodo} />
                 <TodoList
                     //mando el filtro como vista
