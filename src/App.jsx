@@ -65,7 +65,7 @@ const App = () => {
     const filteredTodos = filterFunctions[filter](todos);
 
     return (
-        <div className='min-h-screen bg-gray-200 bg-light-mobile bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dar:bg-dark-mobile md:bg-light-desktop md:dark:bg-dark-desktop '>
+        <div className='min-h-screen bg-gray-200 bg-light-mobile bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-dark-mobile md:bg-light-desktop md:dark:bg-dark-desktop '>
             <Header />
 
             <main className="container mx-auto mt-20 md:mt-10 px-4 md:max-w-xl">
@@ -79,8 +79,10 @@ const App = () => {
                 <TodoComputed
                     itemsLeft={computedItemsLeft}
                     clearCompleted={clearCompleted}
+                    filter={filter}
+                    changeFilter={changeFilter}
                 />
-                <TodoFilter changeFilter={changeFilter} filter={filter} />
+               
             </main>
             <Footer />
         </div>
