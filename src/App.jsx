@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import TodoComputed from "./components/TodoComputed";
@@ -9,6 +10,15 @@ import TodoList from "./components/TodoList";
 const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [
     { id: 1, title: "Developed by tømib4n", completed: false },
 ];
+
+const reorder = (list, startIndex, endIndex) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+};
+
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
 
@@ -64,18 +74,42 @@ const App = () => {
     //Guardo el arreglo segun el objeto accedido por el filtro elegido
     const filteredTodos = filterFunctions[filter](todos);
 
+    const handleDragEnd = (result) => {
+        if (!result.destination) return;
+
+        const startIndex = result.source.index;
+        const endIndex = result.destination.index;
+
+        const items = [...todos];
+        const draggedItem = items[startIndex];
+        const destinationItem = items[endIndex];
+
+        if (!draggedItem.completed && destinationItem.completed) {
+            // La tarea arrastrada es incompleta y la tarea de destino es completa,
+            // no permitir el reordenamiento
+            return;
+        }
+
+        items.splice(startIndex, 1);
+        items.splice(endIndex, 0, draggedItem);
+
+        setTodos(items);
+    };
+
     return (
-        <div className='min-h-screen bg-gray-200 bg-light-mobile bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-dark-mobile md:bg-light-desktop md:dark:bg-dark-desktop '>
+        <div className="min-h-screen bg-gray-200 bg-light-mobile bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-dark-mobile md:bg-light-desktop md:dark:bg-dark-desktop ">
             <Header />
 
-            <main className="container mx-auto mt-20 md:mt-10 px-4 md:max-w-xl">
+            <main className="container mx-auto mt-20 px-4 md:mt-10 md:max-w-xl">
                 <TodoCreate createTodo={createTodo} />
-                <TodoList
-                    //mando el filtro como vista
-                    todos={filteredTodos}
-                    removeTodo={removeTodo}
-                    updateTodo={updateTodo}
-                />
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <TodoList
+                        //mando el filtro como vista
+                        todos={filteredTodos}
+                        removeTodo={removeTodo}
+                        updateTodo={updateTodo}
+                    />
+                </DragDropContext>
                 <TodoComputed
                     itemsLeft={computedItemsLeft}
                     clearCompleted={clearCompleted}
