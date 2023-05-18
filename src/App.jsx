@@ -101,19 +101,20 @@ const App = () => {
             <Header />
 
             <main className="container mx-auto mt-20 px-4 md:mt-10 md:max-w-xl">
+                <TodoCreate createTodo={createTodo} />
                 <DragDropContext onDragEnd={handleDragEnd}>
-                    <TodoCreate createTodo={createTodo} />
                     <TodoList
+                        //mando el filtro como vista
                         todos={filteredTodos}
                         removeTodo={removeTodo}
                         updateTodo={updateTodo}
                     />
-                    <TodoComputed
-                        itemsLeft={computedItemsLeft}
-                        clearCompleted={clearCompleted}
-                    />
-                    <TodoFilter changeFilter={changeFilter} filter={filter} />
                 </DragDropContext>
+                <TodoComputed
+                    itemsLeft={computedItemsLeft}
+                    clearCompleted={clearCompleted}
+                />
+                <TodoFilter changeFilter={changeFilter} filter={filter} />
             </main>
             <Footer />
         </div>
