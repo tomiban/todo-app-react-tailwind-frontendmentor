@@ -2,7 +2,7 @@ import React from "react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todos, removeTodo, updateTodo, handleDragEnd }) => {
+const TodoList = ({ todos, removeTodo, updateTodo }) => {
     return (
         <Droppable droppableId="todos">
             {(droppableProvided) => (
